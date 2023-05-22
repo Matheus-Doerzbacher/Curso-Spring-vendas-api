@@ -28,8 +28,20 @@ public class ProdutoController {
 	private ProdutoRepository repository;
 	
 	@GetMapping
-	public List<ProdutoFormRequest> getLista(){
+	public List<ProdutoFormRequest> getLista() throws InterruptedException{
 		return repository.findAll().stream().map(p -> ProdutoFormRequest.fromModel(p)).collect(Collectors.toList());
+	}
+	
+	@GetMapping("{idProduto}")
+	public ResponseEntity<ProdutoFormRequest> getById(@PathVariable Integer idProduto) {
+		Optional<Produto> produtoExistente = repository.findById(idProduto);
+		
+		if (produtoExistente.isEmpty()) {
+			return ResponseEntity.notFound().build();
+		}
+		
+		var produto = produtoExistente.map(p -> ProdutoFormRequest.fromModel(p)).get();
+		return ResponseEntity.ok(produto);
 	}
 
 	@PostMapping
