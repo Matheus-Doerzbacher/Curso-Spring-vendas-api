@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 
 @Entity
@@ -57,6 +58,7 @@ public class Produto {
 	}
 
 	@PrePersist
+	@PreUpdate
 	public void prePersist() {
 		setDataCadastro(LocalDate.now());
 	}
