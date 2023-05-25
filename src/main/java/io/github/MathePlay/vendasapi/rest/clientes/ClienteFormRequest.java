@@ -2,17 +2,21 @@ package io.github.MathePlay.vendasapi.rest.clientes;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import io.github.MathePlay.vendasapi.model.Cliente;
 
 public class ClienteFormRequest {
 	
 	private Integer idCliente;
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate nascimento;
 	private String nome;
 	private String cpf;
 	private String endereco;
 	private String telefone;
 	private String email;
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataCadastro;
 	
 	public ClienteFormRequest() {

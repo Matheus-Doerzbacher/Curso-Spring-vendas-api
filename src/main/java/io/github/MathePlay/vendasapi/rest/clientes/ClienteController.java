@@ -28,7 +28,7 @@ public class ClienteController {
 	private ClienteRepository repository;
 	
 	@PostMapping
-	public ResponseEntity salvar(@ RequestBody ClienteFormRequest request) {
+	public ResponseEntity<ClienteFormRequest> salvar(@ RequestBody ClienteFormRequest request) {
 		Cliente cliente = request.toModel();
 		repository.save(cliente);
 		return ResponseEntity.ok(ClienteFormRequest.fromModel(cliente));
